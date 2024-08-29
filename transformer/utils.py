@@ -20,4 +20,3 @@ def save_hyperparameters(self, ignore=[]):
                     if k not in set(ignore+['self']) and not k.startswith('_')}
     self.__dict__.update(self.hparams)
     
-    
