@@ -1,8 +1,10 @@
 import torch
 import torch.nn as nn
-from utilities import utils
 
-class MatrixFactorization(utils.NNBase):
+# walkaround for project structure
+from ..utilities.utils import *
+
+class MatrixFactorization(NNBase):
     def __init__(self, n_users, n_items, n_factors, device='cpu', dtype=torch.float32):
         super(MatrixFactorization, self).__init__()
         self.save_hyperparamters()
@@ -12,7 +14,7 @@ class MatrixFactorization(utils.NNBase):
         self.b_user = nn.Embedding(n_users, 1, device=device, dtype=dtype)
         self.b_item = nn.Embedding(n_items, 1, device=device, dtype=dtype)
         
-@utils.add_to_class(MatrixFactorization)
+@add_to_class(MatrixFactorization)
 def forward(self, user_id, item_id):
     p_u = self.P(user_id)
     q_i = self.Q(item_id)
